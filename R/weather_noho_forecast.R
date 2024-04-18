@@ -40,30 +40,27 @@ weather_noho <- function() {
   df["Date"] <- Sys.Date() + (seq(0:14) - 1)
 
   df <- df[, c("Day", "Date", "Status", "High", "Low", "Precipitation Type", "Precipitation Chance", "Wind Direction", "Wind Speed")]
+  class(df) <- c("weather", "data.frame")
   return(df)
 }
 
 #' @title Plot Northampton weather
 #'
-#' @description Plot a given column from the data frame returned from [`weather_noho()`]
+#' @description Create a scatterplot using two variables from a data frame from [`weather_noho()`]
 #'
 #' @importFrom utils hasName
 #' @importFrom graphics plot
 #'
+#' @param data data frame of the weather class from [`weather_noho()`]
 #' @param x,y character vectors containing column names from [`weather_noho()`] for the axis
-#' @export
-plot_noho_weather <- function(x, y) {
-  data <- weather_noho()
+#'
+#' @exportS3Method graphics::plot
+plot.weather <- function(data, x, y) {
   if (!utils::hasName(data, x) | !utils::hasName(data, y)) {
-    stop("One of the columns does not exist in the data")
+    stop("One of the given columns does not exist in the data")
   }
   if (!is.numeric(data[[y]])) {
-    stop("Not a numeric column to graph")
+    stop("Not a numeric column for the y-axis")
   }
   graphics::plot(x = data[[x]], y = data[[y]], xlab = x, ylab = y)
 }
-
-
-# plot.weather()? @exportS3Method...
-
-
