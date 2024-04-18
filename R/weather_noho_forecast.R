@@ -1,15 +1,26 @@
 #' @title Get data from weather.com
 #'
-#' @description
-#' Get data from weather.com about Northampton, MA weather for the next 10 days
+#' @description Get data from weather.com about Northampton, MA weather for the next 14 days
 #'
 #' @importFrom rvest read_html
 #' @importFrom rvest html_elements
 #' @importFrom rvest html_text
 #' @importFrom stringr str_extract
 #'
-#' @export
+#' @return Returns a data frame with the following columns:
+#' - Day (character): day of the week and the day of the month
+#' - Date (Date): a Date formatted version of Day
+#' - Status (character): conditions outside (ex. rainy, cloudy, sunny)
+#' - High (numeric): the peak temperature predicted to be reached
+#' - Low (numeric): the coolest the day is predicted to be
+#' - Precipitation Type (character): what type of precipitation (ex. rain, snow)
+#' - Precipitation Chance (numeric): chances that it will rain, snow, etc
+#' - Wind Direction (character): the direction that the wind is blowing
+#' - Wind Speed (numeric): how fast the wind is blowing
 #'
+#' @source <https://weather.com/weather/tenday/l/8a8df2c2297bffb63bf3fc70a45fd88e10152b88363a57940cb501eb7d2f8094>
+#'
+#' @export
 weather_noho <- function() {
   weather_data <- rvest::read_html("https://weather.com/weather/tenday/l/8a8df2c2297bffb63bf3fc70a45fd88e10152b88363a57940cb501eb7d2f8094")
   weather_trim <- weather_data |>
@@ -17,16 +28,42 @@ weather_noho <- function() {
     rvest::html_text()
 
   df <- as.data.frame(split(weather_trim, seq(from= 1, to = length(weather_trim), by = length(weather_trim) / 6)))
-  names(df) <- c("day", "status", "high", "low", "precipitation chance", "wind")
+  names(df) <- c("Day", "Status", "High", "Low", "Precipitation Chance", "Wind")
 
-  df[["high"]] <- as.numeric(stringr::str_extract(df[["high"]], "[:digit:]*"))
-  df[["low"]] <- as.numeric(stringr::str_extract(df[["low"]], "[:digit:]*"))
+  df[["High"]] <- as.numeric(stringr::str_extract(df[["High"]], "[:digit:]*"))
+  df[["Low"]] <- as.numeric(stringr::str_extract(df[["Low"]], "[:digit:]*"))
 
-  df["precipitation type"] <- stringr::str_extract(df[[5]], "[:alpha:]*(?=[:digit:]*%)")
-  df["precipitation chance"] <- as.numeric(stringr::str_extract(df[[5]], "(?<=[:alpha:])[:digit:]*(?=%)"))
-  df["wind speed"] <- as.numeric(stringr::str_extract(df[["wind"]], "(?<=(N|E|W|S) )[:digit:]*"))
-  df["wind direction"] <- stringr::str_extract(df[["wind"]], "(?<=Wind)[:upper:]*(?= [:digit:])")
+  df["Precipitation Type"] <- stringr::str_extract(df[["Precipitation Chance"]], "[:alpha:]*(?=[:digit:]*%)")
+  df["Precipitation Chance"] <- as.numeric(stringr::str_extract(df[["Precipitation Chance"]], "(?<=[:alpha:])[:digit:]*(?=%)"))
+  df["Wind Speed"] <- as.numeric(stringr::str_extract(df[["Wind"]], "(?<=(N|E|W|S) )[:digit:]*"))
+  df["Wind Direction"] <- stringr::str_extract(df[["Wind"]], "(?<=Wind)[:upper:]*(?= [:digit:])")
+  df["Date"] <- Sys.Date() + (seq(0:14) - 1)
 
-  df <- df[, c("day", "status", "high", "low", "precipitation type", "precipitation chance", "wind direction", "wind speed")]
+  df <- df[, c("Day", "Date", "Status", "High", "Low", "Precipitation Type", "Precipitation Chance", "Wind Direction", "Wind Speed")]
   return(df)
 }
+
+#' @title Plot Northampton weather
+#'
+#' @description Plot a given column from the data frame returned from [`weather_noho()`]
+#'
+#' @importFrom utils hasName
+#' @importFrom graphics plot
+#'
+#' @param x,y character vectors containing column names from [`weather_noho()`] for the axis
+#' @export
+plot_noho_weather <- function(x, y) {
+  data <- weather_noho()
+  if (!utils::hasName(data, x) | !utils::hasName(data, y)) {
+    stop("One of the columns does not exist in the data")
+  }
+  if (!is.numeric(data[[y]])) {
+    stop("Not a numeric column to graph")
+  }
+  graphics::plot(x = data[[x]], y = data[[y]], xlab = x, ylab = y)
+}
+
+
+# plot.weather()? @exportS3Method...
+
+
