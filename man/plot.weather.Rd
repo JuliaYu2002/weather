@@ -12,5 +12,5 @@
 \item{x, y}{character vectors containing column names from \code{\link[=weather_noho]{weather_noho()}} for the axis}
 }
 \description{
-Plot a given column from the data frame returned from \code{\link[=weather_noho]{weather_noho()}}
+Create a scatterplot using two variables from a data frame from \code{\link[=weather_noho]{weather_noho()}}
 }
