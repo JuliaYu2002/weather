@@ -44,6 +44,28 @@ weather_noho <- function() {
   return(df)
 }
 
+#' @title Trim Northampton weather data
+#'
+#' @description Changes the data frame from [`weather_noho()`] to have different columns
+#'
+#' @return Returns a data frame with the following columns:
+#' - City (character): the city of weather origin
+#' - State (character): the state of weather origin
+#' - Date (Date): a Date formatted version of Day
+#' - High (numeric): the peak temperature predicted to be reached
+#' - Low (numeric): the coolest the day is predicted to be
+#' - Wind Speed (numeric): how fast the wind is blowing
+#'
+#' @export
+noho_weather_trim <- function() {
+  df <- weather_noho()
+  df["City"] <- "Northampton"
+  df["State"] <- "Massachusetts"
+
+  df <- df[, c("City", "State", "Date", "High", "Low", "Wind Speed")]
+  return(df)
+}
+
 #' @title Plot Northampton weather
 #'
 #' @description Create a scatterplot using two variables from a data frame from [`weather_noho()`]
