@@ -10,6 +10,11 @@ weather_data <- function(df) {
   return(obj)
 }
 
+#' @title Constructor for `weather_data` class
+#' @description
+#' Creates a class that holds vectors for the high and low temperatures, precipitation, and wind speeds for a series of dates at a given location
+#' @param df The data frame that holds the data
+#' @return An object of class weather_data
 new_weather_data <- function(df) {
   structure(
     as.Date(as.numeric(df$Date)),
@@ -23,6 +28,11 @@ new_weather_data <- function(df) {
   )
 }
 
+#' @title Validator for `weather_data` class
+#' @description
+#' Validates a class that holds high and low temperatures, precipitation, and wind speed data for a series of dates at a particular location
+#' @param obj An object of class weather_data
+#' @return An object of class weather_data
 #' @importFrom lubridate is.Date
 validate_weather_data <- function(obj) {
   #if (!lubridate::is.Date(obj)) {
@@ -40,6 +50,12 @@ validate_weather_data <- function(obj) {
   return(obj)
 }
 
+#' @title Create `hi_lo_temp` from `weather_data`
+#' @description
+#' Creates an object of high and low temperatures from weather data
+#' @param weather_data An object of class `weather_data`
+#' @return An object of class `hi_lo_temp`
+#' @export
 to_hi_lo_temp <- function(weather_data) {
   if (attr(weather_data, "class") != "weather_data") {
     stop("Input must be of class weather_data.")

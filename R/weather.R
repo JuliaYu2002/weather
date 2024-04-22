@@ -4,7 +4,8 @@
 #' @param city A character vector of the city name
 #' @param state A character vector of the state name
 #' @param zip A character vector of the zip code of the city
-#' @return An object of class [`hi_lo_temp`]
+#' @return A data frame of weather from the past 30 days
+#' @source https://www.localconditions.com/
 #' @export
 past_days <- function(city = "northampton", state = "massachusetts", zip = "01060") {
   site <- rvest::read_html(paste0("https://www.localconditions.com/weather-", city, "-", state, "/", zip, "/past.php"))
