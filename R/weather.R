@@ -28,8 +28,9 @@ past_days <- function(city = "northampton", state = "massachusetts", zip = "0106
     stringr::str_extract("Approx. Precipitation / Rain Total: [0-9\\.]*") |>
     substring(36) |>
     as.numeric() |>
-    rev() |>
-    replace(is.na(precip), 0)
+    rev()
+  precip <- replace(precip, is.na(precip), 0)
+  print(precip)
   dates <- seq(Sys.Date()-length(highs)+1, Sys.Date(), by="days")
   recent_weather <- data.frame("City" = city, "State" = state, "High" = highs, "Low" = lows, "Date" = dates, "Precipitation" = precip)
   return(recent_weather)

@@ -31,8 +31,11 @@ validate_weather_data <- function(obj) {
   if (!is.numeric(attr(obj, "highs")) || !is.numeric(attr(obj, "lows"))) {
     stop("Temperature data must be numeric.")
   }
-  if (!is.numeric(attr(obj, "wind_speed"))) {
+  if (!is.null(attr(obj, "wind_speed")) && !is.numeric(attr(obj, "wind_speed"))) {
     stop("Wind speed data must be numeric.")
+  }
+  if (!is.null(attr(obj, "precipitation")) && !is.numeric(attr(obj, "precipitation"))) {
+    stop("Precipitation data must be numeric.")
   }
   return(obj)
 }
