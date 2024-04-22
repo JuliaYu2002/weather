@@ -5,10 +5,9 @@
 #' @param lows Numeric vector of low temperatures
 #' @param dates Numeric vector of high temperatures
 #' @param location Character vector containing city, state, and zip code
-#' @param unit Unit that the temperature is measured in (Fahrenheit, Celsius, or Kelvin)
 #' @return An object of class hi_lo_temp
-hi_lo_temp <- function(highs, lows, dates, location, unit) {
-  obj <- new_hi_lo_temp(highs, lows, dates, location, unit) |>
+hi_lo_temp <- function(highs, lows, dates, location) {
+  obj <- new_hi_lo_temp(highs, lows, dates, location) |>
     validate_hi_lo_temp()
   return(obj)
 }
@@ -20,9 +19,8 @@ hi_lo_temp <- function(highs, lows, dates, location, unit) {
 #' @param lows Numeric vector of low temperatures
 #' @param dates Numeric vector of high temperatures
 #' @param location Character vector containing city, state, and zip code
-#' @param unit Unit that the temperature is measured in (Fahrenheit, Celsius, or Kelvin)
 #' @return An object of class hi_lo_temp
-new_hi_lo_temp <- function(highs, lows, dates, location, unit) {
+new_hi_lo_temp <- function(highs, lows, dates, location) {
   structure(
     as.Date(as.numeric(dates)),
     "highs" = highs,
@@ -30,7 +28,6 @@ new_hi_lo_temp <- function(highs, lows, dates, location, unit) {
     "city" = location[1],
     "state" = location[2],
     "zip" = location[3],
-    "unit" = unit,
     class = "hi_lo_temp"
   )
 }
@@ -42,7 +39,6 @@ new_hi_lo_temp <- function(highs, lows, dates, location, unit) {
 #' @param lows Numeric vector of low temperatures
 #' @param dates Numeric vector of high temperatures
 #' @param location Character vector containing city, state, and zip code
-#' @param unit Unit that the temperature is measured in (Fahrenheit, Celsius, or Kelvin)
 #' @return An object of class hi_lo_temp
 validate_hi_lo_temp <- function(obj) {
   return(obj)
@@ -66,7 +62,7 @@ plot.hi_lo_temp <- function(obj) {
     ggplot2::geom_line(data = df, mapping = ggplot2::aes(x = dates, y = highs)) +
     ggplot2::geom_line(data = df, mapping = ggplot2::aes(x = dates, y = lows)) +
     ggplot2::xlab("Date") +
-    ggplot2::ylab(paste0("High and Low Temp (º", toupper(stringr::str_sub(attr(obj, "unit"), end = 1)),")")) +
+    ggplot2::ylab(paste0("High and Low Temp (ºF)")) +
     ggplot2::ggtitle(paste0("Weather in ", stringr::str_to_title(attr(obj, "city")), ", ", stringr::str_to_title(attr(obj, "state"))))
 }
 
@@ -96,50 +92,6 @@ past_days <- function(city = "northampton", state = "massachusetts", zip = "0106
     rev()
   dates <- seq(Sys.Date()-length(highs)+1, Sys.Date(), by="days")
   location <- c(city, state, zip)
-  if (site |>
-      rvest::html_element(".past_weather_express") |>
-      rvest::html_text() |>
-      stringr::str_extract("º[A-Za-z]") |>
-      tolower() == "ºf") {
-    unit <- "fahrenheit"
-  }
-  past_hi_lo_temps <- new_hi_lo_temp(highs, lows, dates, location, unit)
+  past_hi_lo_temps <- new_hi_lo_temp(highs, lows, dates, location)
   return(past_hi_lo_temps)
-}
-
-to_fahrenheit <- function(temp, unit = "celsius") {
-  if (unit == "celsius") {
-    return((temp * 9/5) + 32)
-  } else if (unit == "kelvin") {
-    return((temp - 273.15) * 9/5 + 32)
-  } else {
-    stop("Invalid unit of temperature.")
-  }
-}
-
-to_celsius <- function(temp, unit = "fahrenheit") {
-  if (unit == "fahrenheit") {
-    return((temp - 32) / 9/5)
-  } else if (unit == "kelvin") {
-    return((temp + 32) * 9/5 - 273.15)
-  } else {
-    stop("Invalid unit of temperature.")
-  }
-}
-
-#' @title Retrieve today's temperatures
-#' @description
-#' Returns approximately hourly temperatures over the course of the current day
-#' @importFrom rvest read_html
-#' @importFrom rvest html_elements
-#' @importFrom rvest html_text
-#' @return Numeric vectors containing the past day's temperatures
-#' @export
-temps_today <- function(city = "northampton", state = "massachusetts", zip = "01060") {
-  site <- rvest::read_html(paste0("https://www.localconditions.com/weather-", city, "-", state, "/", zip, "/past.php"))
-  data <- site |>
-    rvest::html_elements("#day0 td:nth-child(2)") |>
-    rvest::html_text()
-  data <- as.numeric(data)
-  return(data)
 }
