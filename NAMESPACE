@@ -2,6 +2,7 @@
 
 S3method(graphics::plot,weather)
 S3method(plot,hi_lo_temp)
+export(noho_weather_trim)
 export(past_days)
 export(temps_today)
 export(weather_noho)
