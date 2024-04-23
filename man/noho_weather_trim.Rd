@@ -20,3 +20,7 @@ Returns a data frame with the following columns:
 \description{
 Changes the data frame from \code{\link[=weather_noho]{weather_noho()}} to have different columns
 }
+\examples{
+trimmed <- noho_weather_trim()
+print(trimmed)
+}

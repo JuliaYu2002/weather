@@ -20,6 +20,9 @@
 #'
 #' @source <https://weather.com/weather/tenday/l/8a8df2c2297bffb63bf3fc70a45fd88e10152b88363a57940cb501eb7d2f8094>
 #'
+#' @examples
+#' weather <- weather_noho()
+#' print(weather)
 #' @export
 weather_noho <- function() {
   weather_data <- rvest::read_html("https://weather.com/weather/tenday/l/8a8df2c2297bffb63bf3fc70a45fd88e10152b88363a57940cb501eb7d2f8094")
@@ -56,6 +59,9 @@ weather_noho <- function() {
 #' - Low (numeric): the coolest the day is predicted to be
 #' - Wind Speed (numeric): how fast the wind is blowing
 #'
+#' @examples
+#' trimmed <- noho_weather_trim()
+#' print(trimmed)
 #' @export
 noho_weather_trim <- function() {
   df <- weather_noho()
@@ -76,6 +82,9 @@ noho_weather_trim <- function() {
 #' @param data data frame of the weather class from [`weather_noho()`]
 #' @param x,y character vectors containing column names from [`weather_noho()`] for the axis
 #'
+#' @examples
+#' weather <- weather_noho()
+#' plot(weather, "High", "Low")
 #' @exportS3Method graphics::plot
 plot.weather <- function(data, x, y) {
   if (!utils::hasName(data, x) | !utils::hasName(data, y)) {

@@ -14,3 +14,7 @@
 \description{
 Create a scatterplot using two variables from a data frame from \code{\link[=weather_noho]{weather_noho()}}
 }
+\examples{
+weather <- weather_noho()
+plot(weather, "High", "Low")
+}

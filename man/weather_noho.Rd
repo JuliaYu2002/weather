@@ -26,3 +26,7 @@ Returns a data frame with the following columns:
 \description{
 Get data from weather.com about Northampton, MA weather for the next 14 days
 }
+\examples{
+weather <- weather_noho()
+print(weather)
+}

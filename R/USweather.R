@@ -1,5 +1,4 @@
 #' @title Weather Data for US Cities (2016)
-
 #' @format
 #' \describe{
 #' \item{Precipitation}{The average amount of rain, in inches.}
