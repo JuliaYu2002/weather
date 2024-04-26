@@ -6,6 +6,7 @@
 #' @param dates Numeric vector of high temperatures
 #' @param location Character vector containing city, state, and zip code
 #' @return An object of class hi_lo_temp
+#' @export
 hi_lo_temp <- function(highs, lows, dates, location) {
   obj <- new_hi_lo_temp(highs, lows, dates, location) |>
     validate_hi_lo_temp()
@@ -41,6 +42,9 @@ new_hi_lo_temp <- function(highs, lows, dates, location) {
 #' @param location Character vector containing city, state, and zip code
 #' @return An object of class hi_lo_temp
 validate_hi_lo_temp <- function(obj) {
+  if (any(attr(obj, "highs") < attr(obj, "lows"))) {
+    stop("High temperature cannot be less than low temperature for any given day.")
+  }
   return(obj)
 }
 
@@ -63,5 +67,8 @@ plot.hi_lo_temp <- function(obj) {
     ggplot2::geom_line(data = df, mapping = ggplot2::aes(x = dates, y = lows)) +
     ggplot2::xlab("Date") +
     ggplot2::ylab(paste0("High and Low Temp (ºF)")) +
-    ggplot2::ggtitle(paste0("Weather in ", stringr::str_to_title(attr(obj, "city")), ", ", stringr::str_to_title(attr(obj, "state"))))
+    ggplot2::ggtitle(paste0("Weather in ", stringr::str_to_title(attr(obj, "city")), ", ", stringr::str_to_title(attr(obj, "state")))) +
+    ggplot2::scale_x_date(date_breaks = "1 day", date_labels = "%Y-%m-%d") +
+    ggplot2::theme_minimal() +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90))
 }

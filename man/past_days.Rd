@@ -3,6 +3,9 @@
 \name{past_days}
 \alias{past_days}
 \title{Retrieve high and low temperature data}
+\source{
+https://www.localconditions.com/
+}
 \usage{
 past_days(city = "northampton", state = "massachusetts", zip = "01060")
 }
@@ -14,8 +17,11 @@ past_days(city = "northampton", state = "massachusetts", zip = "01060")
 \item{zip}{A character vector of the zip code of the city}
 }
 \value{
-An object of class \code{\link{hi_lo_temp}}
+A data frame of weather from the past 30 days
 }
 \description{
 Scrapes www.localconditions.com
+}
+\examples{
+past_days("northampton", "massachusetts", "01060")
 }

@@ -39,50 +39,53 @@ weather_noho <- function() {
   df["Wind Direction"] <- stringr::str_extract(df[["Wind"]], "(?<=Wind)[:upper:]*(?= [:digit:])")
   df["Date"] <- Sys.Date() + (seq(0:14) - 1)
 
-  df <- df[, c("Day", "Date", "Status", "High", "Low", "Precipitation Type", "Precipitation Chance", "Wind Direction", "Wind Speed")]
+  df["City"] <- "Northampton"
+  df["State"] <- "Massachusetts"
+
+  df <- df[, c("Day", "Date", "Status", "High", "Low", "Precipitation Type", "Precipitation Chance", "Wind Direction", "Wind Speed", "City", "State")]
   class(df) <- c("weather", "data.frame")
   return(df)
 }
 
-#' @title Trim Northampton weather data
-#'
-#' @description Changes the data frame from [`weather_noho()`] to have different columns
-#'
-#' @return Returns a data frame with the following columns:
-#' - City (character): the city of weather origin
-#' - State (character): the state of weather origin
-#' - Date (Date): a Date formatted version of Day
-#' - High (numeric): the peak temperature predicted to be reached
-#' - Low (numeric): the coolest the day is predicted to be
-#' - Wind Speed (numeric): how fast the wind is blowing
-#'
-#' @export
-noho_weather_trim <- function() {
-  df <- weather_noho()
-  df["City"] <- "Northampton"
-  df["State"] <- "Massachusetts"
+# #' @title Trim Northampton weather data
+# #'
+# #' @description Changes the data frame from [`weather_noho()`] to have different columns
+# #'
+# #' @return Returns a data frame with the following columns:
+# #' - City (character): the city of weather origin
+# #' - State (character): the state of weather origin
+# #' - Date (Date): a Date formatted version of Day
+# #' - High (numeric): the peak temperature predicted to be reached
+# #' - Low (numeric): the coolest the day is predicted to be
+# #' - Wind Speed (numeric): how fast the wind is blowing
+# #'
+# #' @export
+# noho_weather_trim <- function() {
+#   df <- weather_noho()
+#   df["City"] <- "Northampton"
+#   df["State"] <- "Massachusetts"
+#
+#   df <- df[, c("City", "State", "Date", "High", "Low", "Wind Speed")]
+#   return(df)
+# }
 
-  df <- df[, c("City", "State", "Date", "High", "Low", "Wind Speed")]
-  return(df)
-}
-
-#' @title Plot Northampton weather
-#'
-#' @description Create a scatterplot using two variables from a data frame from [`weather_noho()`]
-#'
-#' @importFrom utils hasName
-#' @importFrom graphics plot
-#'
-#' @param data data frame of the weather class from [`weather_noho()`]
-#' @param x,y character vectors containing column names from [`weather_noho()`] for the axis
-#'
-#' @exportS3Method graphics::plot
-plot.weather <- function(data, x, y) {
-  if (!utils::hasName(data, x) | !utils::hasName(data, y)) {
-    stop("One of the given columns does not exist in the data")
-  }
-  if (!is.numeric(data[[y]])) {
-    stop("Not a numeric column for the y-axis")
-  }
-  graphics::plot(x = data[[x]], y = data[[y]], xlab = x, ylab = y)
-}
+# #' @title Plot Northampton weather
+# #'
+# #' @description Create a scatterplot using two variables from a data frame from [`weather_noho()`]
+# #'
+# #' @importFrom utils hasName
+# #' @importFrom graphics plot
+# #'
+# #' @param data data frame of the weather class from [`weather_noho()`]
+# #' @param x,y character vectors containing column names from [`weather_noho()`] for the axis
+# #'
+# #' @exportS3Method graphics::plot
+# plot.weather <- function(data, x, y) {
+#   if (!utils::hasName(data, x) | !utils::hasName(data, y)) {
+#     stop("One of the given columns does not exist in the data")
+#   }
+#   if (!is.numeric(data[[y]])) {
+#     stop("Not a numeric column for the y-axis")
+#   }
+#   graphics::plot(x = data[[x]], y = data[[y]], xlab = x, ylab = y)
+# }
