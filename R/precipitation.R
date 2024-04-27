@@ -50,8 +50,15 @@ validate_precip_data <- function(pre_obj) {
 #' @param city A character vector of the city name
 #' @param state A character vector of the state name
 #' @param zip A character vector of the zip code of the city
-#' @return An object of class precipitation
+#' @return An object of class precip_class
+#'
+#' @source <https://www.localconditions.com/>
+#'
+#' @examples
+#' past_precipitation(city = "northampton", state = "massachusetts", zip = "01060")
+#'
 #' @export
+
 past_precipitation <- function(city = "new-york", state = "new-york", zip = "10001") {
   url <- rvest::read_html(paste0("https://www.localconditions.com/weather-", city, "-", state, "/", zip, "/past.php"))
 
@@ -80,7 +87,12 @@ past_precipitation <- function(city = "new-york", state = "new-york", zip = "100
 #' @title Plot past precipitation
 #' @description
 #' Graphs past precipitation for the given dates
-#' @param pre_obj An object of class precipitation
+#' @param pre_obj An object of class precip_class generated from function past_precipitation
+#'
+#' @examples
+#' pastprecip <- past_precipitation(city = "northampton", state = "massachusetts", zip = "01060")
+#' plot_past_precipitation(pastprecip)
+#'
 #' @exportS3Method
 plot.precipitation <- function(pre_obj) {
   precip_df <- data.frame(Date = as.Date(as.numeric(pre_obj)), Precipitation = attr(pre_obj, "precip"))
