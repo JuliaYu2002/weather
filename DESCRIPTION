@@ -1,12 +1,14 @@
 Package: weather
-Title: What the Package Does (One Line, Title Case)
+Title: View and Plot Weather Data
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Authors@R: c(
+    person("Lucia", "Qin", , "lqin@smith.edu", role = c("aut", "cre")),
+    person("Karenna", "Kung", , "kkung@smith.edu", role = c("aut", "cre")),
+    person("Julia", "Yu", , "jyu@smith.edu", role = c("aut", "cre")))
+Description: Web scrapes and uses an existing data set to graph various weather trends. 
+For example, high and low tempteratures, precipitation, and wind speed. Also, gets a forecast of 
+weather in Northampton, Massachusetts and weather data from other places depending on user input.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
