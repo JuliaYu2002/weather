@@ -14,7 +14,11 @@ new_precip_data(precipitation, dates, location)
 \item{location}{Character vector containing city, state, and zip code}
 }
 \value{
+<<<<<<< Updated upstream
 An object of class precipitation
+=======
+An object of class precip_class
+>>>>>>> Stashed changes
 }
 \description{
 Creates a class that contains vectors for the precipitation for a series of dates at a particular location.

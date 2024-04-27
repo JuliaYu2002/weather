@@ -7,10 +7,17 @@
 validate_precip_data(pre_obj)
 }
 \arguments{
+<<<<<<< Updated upstream
 \item{obj}{Object of class precipitation}
 }
 \value{
 An object of class precipitation
+=======
+\item{obj}{Object of class precip_class}
+}
+\value{
+An object of class precip_class
+>>>>>>> Stashed changes
 }
 \description{
 Validates a class that holds vectors for the precipitation data for a series of dates at a particular location

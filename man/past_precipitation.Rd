@@ -3,6 +3,12 @@
 \name{past_precipitation}
 \alias{past_precipitation}
 \title{Retrieve past precipitation data}
+<<<<<<< Updated upstream
+=======
+\source{
+\url{https://www.localconditions.com/}
+}
+>>>>>>> Stashed changes
 \usage{
 past_precipitation(city = "new-york", state = "new-york", zip = "10001")
 }
@@ -14,8 +20,19 @@ past_precipitation(city = "new-york", state = "new-york", zip = "10001")
 \item{zip}{A character vector of the zip code of the city}
 }
 \value{
+<<<<<<< Updated upstream
 An object of class precipitation
+=======
+An object of class precip_class
+>>>>>>> Stashed changes
 }
 \description{
 Scrapes www.localconditions.com for the past precipitation data
 }
+<<<<<<< Updated upstream
+=======
+\examples{
+past_precipitation(city = "northampton", state = "massachusetts", zip = "01060")
+
+}
+>>>>>>> Stashed changes
