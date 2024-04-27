@@ -1,0 +1,70 @@
+---
+title: "Using the weather package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the weather package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+First, load the weather package.
+
+```{r setup}
+library(weather)
+```
+
+# Loading weather data
+
+The weather package provides three ways of obtaining weather data.
+
+## 1. Obtaining data from the distant past
+
+The weather package comes with a built in dataframe called USweather. You can view this dataframe once the package is loaded.
+
+```{r}
+View(USweather)
+```
+
+The dataframe contains information such as when and where the data was collected, temperature data, wind data, and precipitation data.
+
+This dataframe contains data from many cities, so we recommend selecting just one city if you would like to perform further analysis. 
+
+```{r}
+boston <- USweather[USweather$City=="Boston", ]
+```
+
+## 2. Obtaining data from the recent past
+
+Data can also be obtained from the website https://www.localconditions.com/ for a particular city using the `past_days()` function. This returns a dataframe containing the location, date, high and low temperature, and precipitation from approximately the past month.
+
+```{r}
+noho <- past_days("northampton", "ma", "01060")
+View(noho)
+```
+
+## 3 Obtaining forecasted data
+
+Forecasted data can be obtained from https://weather.com for Northampton, MA using the `weather_noho()` function. This returns a dataframe containing the location, date, wind speed, precipitation chance, and temperatures for about two weeks in the future.
+
+```{r}
+noho_forecast <- weather_noho()
+View(noho_forecast)
+```
+
+# Creating objects of class weather_data
+
+Data frame retrieved via any of the above methods can be converted into a weather_data class object, which holds date, location, high and low temperature, wind speed, and precipitation information, where applicable.
+
+```{r}
+boston <- weather_data(boston)
+noho <- weather_data(noho)
+noho_forecast <- weather_data(noho_forecast)
+```
+
