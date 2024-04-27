@@ -35,10 +35,10 @@ new_precip_data <- function(precipitation, dates, location) {
 #' @param obj Object of class precipitation
 #' @return An object of class precipitation
 validate_precip_data <- function(pre_obj) {
-  if (attr(pre_obj, "precipitation") < 0) {
+  if (any(attr(pre_obj, "precipitation") < 0)) {
     stop("Precipitation cannot be negative.")
   }
-  if (attr(pre_obj, "precipitation") > 100) {
+  if (any(attr(pre_obj, "precipitation") > 100)) {
     warning("It seems highly unlikely that there was more than 100 inches of precipitation in one day.")
   }
   return(pre_obj)
