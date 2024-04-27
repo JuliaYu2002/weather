@@ -3,7 +3,7 @@
 #' Scrapes www.localconditions.com
 #' @importFrom rvest read_html
 #' @importFrom rvest html_elements
-#' @importFrom rvest html text
+#' @importFrom rvest html_text
 #' @importFrom stringr str_extract
 #' @param city A character vector of the city name
 #' @param state A character vector of the state name
@@ -41,6 +41,7 @@ past_days <- function(city = "northampton", state = "massachusetts", zip = "0106
     rev()
   precip <- replace(precip, is.na(precip), 0)
   dates <- seq(Sys.Date()-length(highs)+1, Sys.Date(), by="days")
+  # get location from website, as it retrieves data solely by zip code
   loc <- site |>
     rvest::html_elements(".grippy-host , h1") |>
     rvest::html_text() |>

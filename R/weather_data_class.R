@@ -21,7 +21,7 @@ weather_data <- function(df) {
 #' @return An object of class weather_data
 new_weather_data <- function(df) {
   structure(
-    as.Date(as.numeric(df$Date)),
+    as.Date(df$Date, tryFormats = c("%Y-%m-%d", "%Y/%m/%d")),
     "highs" = df$High,
     "lows" = df$Low,
     "wind_speed" = df[['Wind Speed']],
