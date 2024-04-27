@@ -7,8 +7,13 @@
 \method{plot}{precipitation}(pre_obj)
 }
 \arguments{
-\item{pre_obj}{An object of class precipitation}
+\item{pre_obj}{An object of class precip_class generated from function past_precipitation}
 }
 \description{
 Graphs past precipitation for the given dates
+}
+\examples{
+pastprecip <- past_precipitation(city = "northampton", state = "massachusetts", zip = "01060")
+plot_past_precipitation(pastprecip)
+
 }
