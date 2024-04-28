@@ -2,9 +2,9 @@ Package: weather
 Title: View and Plot Weather Data
 Version: 0.0.0.9000
 Authors@R: c(
-    person("Lucia", "Qin", "lqin@smith.edu", role = c("aut", "cre")),
-    person("Karenna", "Kung", "kkung@smith.edu", role = c("aut", "cre")),
-    person("Julia", "Yu", "jyu@smith.edu", role = c("aut", "cre")))
+    person(given = "Lucia", family = "Qin", email = "lqin@smith.edu", role = c("aut")),
+    person(given = "Karenna", family = "Kung", email = "kkung@smith.edu", role = c("aut")),
+    person(given = "Julia", family = "Yu", email = "jyu@smith.edu", role = c("aut", "cre")))
 Description: Web scrapes and uses an existing data set to graph various weather trends. For example, high and low tempteratures, precipitation, and wind speed. Also, gets a forecast of weather in Northampton, Massachusetts and weather data from other places depending on user input.
 License: MIT + file LICENSE
 Encoding: UTF-8
