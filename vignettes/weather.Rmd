@@ -68,3 +68,36 @@ noho <- weather_data(noho)
 noho_forecast <- weather_data(noho_forecast)
 ```
 
+# Plotting high and low temperature data
+
+Before you can plot high and low temperature data, you must convert the weather class into a hi_lo_temp class using the `to_hi_lo_temp()` function. 
+
+```{r}
+boston_hi_lo <- to_hi_lo_temp(boston)
+noho_hi_lo <- to_hi_lo_temp(noho)
+noho_forecast_hi_lo <- to_hi_lo_temp(noho_forecast)
+```
+
+Now, you can plot any of these objects using the `plot()` function.
+
+```{r}
+plot(boston_hi_lo)
+plot(noho_hi_lo)
+plot(noho_forecast_hi_lo)
+```
+
+# Plotting precipitation data
+
+Before you can plot precipitation data, you must convert the weather class into a precipitation class using the `precipitation()` function. However, future forecasted data does not include precipitation in inches, so you can only plot precipitation data for past dates.
+
+```{r}
+boston_precip <- to_precipitation(boston)
+noho_precip <- to_precipitation(noho)
+```
+
+Now, you can plot these objects using the `plot()` function.
+
+```{r}
+plot(boston_precip)
+plot(noho_precip)
+```

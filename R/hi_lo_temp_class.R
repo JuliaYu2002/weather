@@ -28,7 +28,6 @@ new_hi_lo_temp <- function(highs, lows, dates, location) {
     "lows" = lows,
     "city" = location[1],
     "state" = location[2],
-    "zip" = location[3],
     class = "hi_lo_temp"
   )
 }
@@ -39,7 +38,16 @@ new_hi_lo_temp <- function(highs, lows, dates, location) {
 #' @param obj A [`hi_lo_temp()`] object to be validated
 #' @return An object of class hi_lo_temp
 validate_hi_lo_temp <- function(obj) {
-  if (any(attr(obj, "highs") < attr(obj, "lows"))) {
+  if (!is.numeric(attr(obj, "highs")) | !is.numeric(attr(obj, "lows"))) {
+    stop("Temperature data must be numeric.")
+  }
+  if (!is.character(attr(obj, "city")) | !is.character(attr(obj, "state"))) {
+    stop("Location information must be character.")
+  }
+  if (length(obj) != length(attr(obj, "highs")) | length(obj) != length(attr(obj, "lows"))) {
+    stop("Vectors for dates, highs, and lows must be the same length.")
+  }
+  if (any(attr(obj, "highs") < attr(obj, "lows") & !is.na(attr(obj, "highs")) & !is.na(attr(obj, "lows")))) {
     stop("High temperature cannot be less than low temperature for any given day.")
   }
   return(obj)
