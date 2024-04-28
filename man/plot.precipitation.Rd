@@ -15,7 +15,7 @@
 Graphs past precipitation for the given dates
 }
 \examples{
-pastprecip <- past_precipitation(city = "northampton", state = "massachusetts", zip = "01060")
-plot_past_precipitation(pastprecip)
+pastprecip <- precipitation(c(0.01, 0, 0.04, 0), seq(Sys.Date()-3, Sys.Date(), by="days"), c("Northampton","Massachusetts"))
+plot(pastprecip)
 
 }
