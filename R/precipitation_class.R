@@ -35,10 +35,10 @@ new_precip_data <- function(precipitation, dates, location) {
 #' @param obj Object of class precipitation
 #' @return An object of class precipitation
 validate_precip_data <- function(pre_obj) {
-  if (any(attr(pre_obj, "precipitation") < 0)) {
+  if (any(attr(pre_obj, "precip") < 0)) {
     stop("Precipitation cannot be negative.")
   }
-  if (any(attr(pre_obj, "precipitation") > 100)) {
+  if (any(attr(pre_obj, "precip") > 100)) {
     warning("It seems highly unlikely that there was more than 100 inches of precipitation in one day.")
   }
   return(pre_obj)
@@ -109,7 +109,7 @@ plot.precipitation <- function(pre_obj) {
                   ggplot2::aes(x = as.Date(Date),
                                y = Precipitation)) +
     ggplot2::geom_bar(stat = "identity", fill = "blue", width = 0.5) +
-    ggplot2::scale_x_date(date_breaks = "1 day", date_labels = "%Y-%m-%d") +
+    ggplot2::scale_x_date(date_breaks = paste(ceiling(length(pre_obj)/7), "day"), date_labels = "%Y-%m-%d") +
     ggplot2::xlab("Date") +
     ggplot2::ylab("Precipitation (inches)") +
     ggplot2::ggtitle(paste0("Past Precipitation in ",
