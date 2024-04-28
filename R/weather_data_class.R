@@ -41,9 +41,6 @@ new_weather_data <- function(df) {
 #' validate_weather_data(new_weather_data(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts"))))
 #' @importFrom lubridate is.Date
 validate_weather_data <- function(obj) {
-  #if (!lubridate::is.Date(obj)) {
-    #stop("Dates of weather observations must be of type Date.")
-  #}
   if (!is.numeric(attr(obj, "highs")) || !is.numeric(attr(obj, "lows"))) {
     stop("Temperature data must be numeric.")
   }
@@ -65,7 +62,7 @@ validate_weather_data <- function(obj) {
 #' to_hi_lo_temp(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts")))
 #' @export
 to_hi_lo_temp <- function(weather_data) {
-  if (attr(weather_data, "class") != "weather_data") {
+  if (length(attr(weather_data, "class")) < 1 || attr(weather_data, "class") != "weather_data") {
     stop("Input must be of class weather_data.")
   }
   validate_weather_data(weather_data)
@@ -81,7 +78,7 @@ to_hi_lo_temp <- function(weather_data) {
 #' to_precipitation(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts")))
 #' @export
 to_precipitation <- function(weather_data) {
-  if (attr(weather_data, "class") != "weather_data") {
+  if (length(attr(weather_data, "class")) < 1 || attr(weather_data, "class") != "weather_data") {
     stop("Input must be of class weather_data.")
   }
   validate_weather_data(weather_data)

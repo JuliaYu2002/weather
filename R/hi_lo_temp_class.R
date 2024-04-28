@@ -28,7 +28,6 @@ new_hi_lo_temp <- function(highs, lows, dates, location) {
     "lows" = lows,
     "city" = location[1],
     "state" = location[2],
-    "zip" = location[3],
     class = "hi_lo_temp"
   )
 }
@@ -42,7 +41,16 @@ new_hi_lo_temp <- function(highs, lows, dates, location) {
 #' @param location Character vector containing city, state, and zip code
 #' @return An object of class hi_lo_temp
 validate_hi_lo_temp <- function(obj) {
-  if (any(attr(obj, "highs") < attr(obj, "lows"))) {
+  if (!is.numeric(attr(obj, "highs")) | !is.numeric(attr(obj, "lows"))) {
+    stop("Temperature data must be numeric.")
+  }
+  if (!is.character(attr(obj, "city")) | !is.character(attr(obj, "state"))) {
+    stop("Location information must be character.")
+  }
+  if (length(obj) != length(attr(obj, "highs")) | length(obj) != length(attr(obj, "lows"))) {
+    stop("Vectors for dates, highs, and lows must be the same length.")
+  }
+  if (any(attr(obj, "highs") < attr(obj, "lows") & !is.na(attr(obj, "highs")) & !is.na(attr(obj, "lows")))) {
     stop("High temperature cannot be less than low temperature for any given day.")
   }
   return(obj)
@@ -68,7 +76,7 @@ plot.hi_lo_temp <- function(obj) {
     ggplot2::xlab("Date") +
     ggplot2::ylab(paste0("High and Low Temp (ºF)")) +
     ggplot2::ggtitle(paste0("Weather in ", stringr::str_to_title(attr(obj, "city")), ", ", stringr::str_to_title(attr(obj, "state")))) +
-    ggplot2::scale_x_date(date_breaks = "1 day", date_labels = "%Y-%m-%d") +
+    ggplot2::scale_x_date(date_breaks = paste(ceiling(length(obj)/7), "day"), date_labels = "%Y-%m-%d") +
     ggplot2::theme_minimal() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90))
 }
