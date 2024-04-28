@@ -4,10 +4,12 @@
 \alias{plot.precipitation}
 \title{Plot past precipitation}
 \usage{
-\method{plot}{precipitation}(pre_obj)
+\method{plot}{precipitation}(x, ...)
 }
 \arguments{
-\item{pre_obj}{An object of class precip_class generated from function past_precipitation}
+\item{x}{An object of class precip_class generated from function past_precipitation}
+
+\item{...}{Additional parameters}
 }
 \description{
 Graphs past precipitation for the given dates

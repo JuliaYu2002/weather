@@ -1,6 +1,6 @@
 #' @title Precipitation class
-#' @description
-#' A class that contains vectors for the precipitation for a series of dates at a particular location
+#' @description A class that contains vectors for the precipitation for a series of dates at a
+#' particular location
 #' @param precipitation Numeric vector of precipitation inches
 #' @param dates Numeric vector of dates
 #' @param location Character vector containing city, state, and zip code
@@ -13,8 +13,8 @@ precipitation <- function(precipitation, dates, location) {
 }
 
 #' @title Constructor for the Precipitation class
-#' @description
-#' Creates a class that contains vectors for the precipitation for a series of dates at a particular location.
+#' @description Creates a class that contains vectors for the precipitation for a series of dates at
+#' a particular location.
 #' @param precipitation Numeric vector of precipitation amounts
 #' @param dates Numeric vector of dates
 #' @param location Character vector containing city, state, and zip code
@@ -30,9 +30,9 @@ new_precip_data <- function(precipitation, dates, location) {
 }
 
 #' @title Validator for Precipitation class
-#' @description
-#' Validates a class that holds vectors for the precipitation data for a series of dates at a particular location
-#' @param obj Object of class precipitation
+#' @description Validates a class that holds vectors for the precipitation data for a series of
+#' dates at a particular location
+#' @param pre_obj Object of class precipitation
 #' @return An object of class precipitation
 validate_precip_data <- function(pre_obj) {
   if (any(attr(pre_obj, "precip") < 0)) {
@@ -45,17 +45,17 @@ validate_precip_data <- function(pre_obj) {
 }
 
 #' @title Plot past precipitation
-#' @description
-#' Graphs past precipitation for the given dates
-#' @param pre_obj An object of class precip_class generated from function past_precipitation
+#' @description Graphs past precipitation for the given dates
+#' @param x An object of class precip_class generated from function past_precipitation
+#' @param ... Additional parameters
 #'
 #' @examples
 #' pastprecip <- precipitation(c(0.01, 0, 0.04, 0), seq(Sys.Date()-3, Sys.Date(), by="days"), c("Northampton","Massachusetts"))
 #' plot(pastprecip)
 #'
 #' @exportS3Method
-plot.precipitation <- function(pre_obj) {
-  precip_df <- data.frame(Date = as.Date(as.numeric(pre_obj)), Precipitation = attr(pre_obj, "precip"))
+plot.precipitation <- function(x, ...) {
+  precip_df <- data.frame(Date = as.Date(as.numeric(x)), Precipitation = attr(x, "precip"))
 
   ggplot2::ggplot(data = precip_df,
                   ggplot2::aes(x = as.Date(Date),
@@ -65,9 +65,9 @@ plot.precipitation <- function(pre_obj) {
     ggplot2::xlab("Date") +
     ggplot2::ylab("Precipitation (inches)") +
     ggplot2::ggtitle(paste0("Past Precipitation in ",
-                            stringr::str_to_title(attr(pre_obj, "city")),
+                            stringr::str_to_title(attr(x, "city")),
                             ", ",
-                            stringr::str_to_title(attr(pre_obj, "state")))) +
+                            stringr::str_to_title(attr(x, "state")))) +
     ggplot2::theme_minimal() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90))
 }

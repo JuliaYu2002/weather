@@ -17,5 +17,6 @@ precipitation(precipitation, dates, location)
 An object of class precipitation
 }
 \description{
-A class that contains vectors for the precipitation for a series of dates at a particular location
+A class that contains vectors for the precipitation for a series of dates at a
+particular location
 }
