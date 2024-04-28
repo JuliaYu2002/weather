@@ -19,5 +19,6 @@ new_hi_lo_temp(highs, lows, dates, location)
 An object of class hi_lo_temp
 }
 \description{
-Creates a class that holds vectors for the high and low temperatures for a series of dates at a particular location
+Creates a class that holds vectors for the high and low temperatures for a series of
+dates at a particular location
 }

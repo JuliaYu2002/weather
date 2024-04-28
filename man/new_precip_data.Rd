@@ -17,5 +17,6 @@ new_precip_data(precipitation, dates, location)
 An object of class precipitation
 }
 \description{
-Creates a class that contains vectors for the precipitation for a series of dates at a particular location.
+Creates a class that contains vectors for the precipitation for a series of dates at
+a particular location.
 }

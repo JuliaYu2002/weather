@@ -1,6 +1,5 @@
 #' @title Retrieve high and low temperature data
-#' @description
-#' Scrapes www.localconditions.com
+#' @description Scrapes www.localconditions.com
 #' @importFrom rvest read_html
 #' @importFrom rvest html_elements
 #' @importFrom rvest html_text
@@ -14,7 +13,8 @@
 #' past_days("northampton", "massachusetts", "01060")
 #' @export
 past_days <- function(city = "northampton", state = "massachusetts", zip = "01060") {
-  site <- rvest::read_html(paste0("https://www.localconditions.com/weather-", city, "-", state, "/", zip, "/past.php"))
+  site <- rvest::read_html(paste0("https://www.localconditions.com/weather-", city, "-", state, "/",
+                                  zip, "/past.php"))
   highs <- site |>
     rvest::html_elements(".past_weather_express") |>
     rvest::html_text() |>
@@ -49,6 +49,7 @@ past_days <- function(city = "northampton", state = "massachusetts", zip = "0106
   city <- loc[[1]][1]
   state <- loc[[1]][2] |>
     substring(first = 2, last = 3)
-  recent_weather <- data.frame("City" = city, "State" = state, "High" = highs, "Low" = lows, "Date" = dates, "Precipitation" = precip)
+  recent_weather <- data.frame("City" = city, "State" = state, "High" = highs, "Low" = lows,
+                               "Date" = dates, "Precipitation" = precip)
   return(recent_weather)
 }

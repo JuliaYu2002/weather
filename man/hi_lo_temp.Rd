@@ -19,5 +19,6 @@ hi_lo_temp(highs, lows, dates, location)
 An object of class hi_lo_temp
 }
 \description{
-A class that holds vectors for the high and low temperatures for a series of dates at a particular location
+A class that holds vectors for the high and low temperatures for a series of dates
+at a particular location
 }

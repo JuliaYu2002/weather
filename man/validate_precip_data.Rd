@@ -7,11 +7,12 @@
 validate_precip_data(pre_obj)
 }
 \arguments{
-\item{obj}{Object of class precipitation}
+\item{pre_obj}{Object of class precipitation}
 }
 \value{
 An object of class precipitation
 }
 \description{
-Validates a class that holds vectors for the precipitation data for a series of dates at a particular location
+Validates a class that holds vectors for the precipitation data for a series of
+dates at a particular location
 }

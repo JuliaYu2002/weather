@@ -1,6 +1,6 @@
 #' @title Precipitation class
-#' @description
-#' A class that contains vectors for the precipitation for a series of dates at a particular location
+#' @description A class that contains vectors for the precipitation for a series of dates at a
+#' particular location
 #' @param precipitation Numeric vector of precipitation inches
 #' @param dates Numeric vector of dates
 #' @param location Character vector containing city, state, and zip code
@@ -13,8 +13,8 @@ precipitation <- function(precipitation, dates, location) {
 }
 
 #' @title Constructor for the Precipitation class
-#' @description
-#' Creates a class that contains vectors for the precipitation for a series of dates at a particular location.
+#' @description Creates a class that contains vectors for the precipitation for a series of dates at
+#' a particular location.
 #' @param precipitation Numeric vector of precipitation amounts
 #' @param dates Numeric vector of dates
 #' @param location Character vector containing city, state, and zip code
@@ -30,23 +30,22 @@ new_precip_data <- function(precipitation, dates, location) {
 }
 
 #' @title Validator for Precipitation class
-#' @description
-#' Validates a class that holds vectors for the precipitation data for a series of dates at a particular location
-#' @param obj Object of class precipitation
+#' @description Validates a class that holds vectors for the precipitation data for a series of
+#' dates at a particular location
+#' @param pre_obj Object of class precipitation
 #' @return An object of class precipitation
 validate_precip_data <- function(pre_obj) {
-  if (attr(pre_obj, "precipitation") < 0) {
+  if (attr(pre_obj, "precip") < 0) {
     stop("Precipitation cannot be negative.")
   }
-  if (attr(pre_obj, "precipitation") > 100) {
+  if (attr(pre_obj, "precip") > 100) {
     warning("It seems highly unlikely that there was more than 100 inches of precipitation in one day.")
   }
   return(pre_obj)
 }
 
 #' @title Retrieve past precipitation data
-#' @description
-#' Scrapes www.localconditions.com for the past precipitation data
+#' @description Scrapes www.localconditions.com for the past precipitation data
 #' @param city A character vector of the city name
 #' @param state A character vector of the state name
 #' @param zip A character vector of the zip code of the city
@@ -58,7 +57,6 @@ validate_precip_data <- function(pre_obj) {
 #' past_precipitation(city = "northampton", state = "massachusetts", zip = "01060")
 #'
 #' @export
-
 past_precipitation <- function(city = "new-york", state = "new-york", zip = "10001") {
   url <- rvest::read_html(paste0("https://www.localconditions.com/weather-", city, "-", state, "/", zip, "/past.php"))
 
@@ -85,17 +83,17 @@ past_precipitation <- function(city = "new-york", state = "new-york", zip = "100
 }
 
 #' @title Plot past precipitation
-#' @description
-#' Graphs past precipitation for the given dates
-#' @param pre_obj An object of class precip_class generated from function past_precipitation
+#' @description Graphs past precipitation for the given dates
+#' @param x An object of class precip_class generated from function past_precipitation
+#' @param ... Additional parameters
 #'
 #' @examples
 #' pastprecip <- past_precipitation(city = "northampton", state = "massachusetts", zip = "01060")
 #' plot_past_precipitation(pastprecip)
 #'
 #' @exportS3Method
-plot.precipitation <- function(pre_obj) {
-  precip_df <- data.frame(Date = as.Date(as.numeric(pre_obj)), Precipitation = attr(pre_obj, "precip"))
+plot.precipitation <- function(x, ...) {
+  precip_df <- data.frame(Date = as.Date(as.numeric(x)), Precipitation = attr(x, "precip"))
 
   # Convert Date to Date type and Precipitation to numeric
   # precip_df$Date <- as.Date(precip_df$Date, format="%Y-%m-%d")
@@ -113,9 +111,9 @@ plot.precipitation <- function(pre_obj) {
     ggplot2::xlab("Date") +
     ggplot2::ylab("Precipitation (inches)") +
     ggplot2::ggtitle(paste0("Past Precipitation in ",
-                            stringr::str_to_title(attr(pre_obj, "city")),
+                            stringr::str_to_title(attr(x, "city")),
                             ", ",
-                            stringr::str_to_title(attr(pre_obj, "state")))) +
+                            stringr::str_to_title(attr(x, "state")))) +
     ggplot2::theme_minimal() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90))
 }

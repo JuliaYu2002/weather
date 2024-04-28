@@ -4,10 +4,12 @@
 \alias{plot.hi_lo_temp}
 \title{Graph high and low temperatures}
 \usage{
-\method{plot}{hi_lo_temp}(obj)
+\method{plot}{hi_lo_temp}(x, ...)
 }
 \arguments{
-\item{obj}{A \code{\link{high_low_temp}} object}
+\item{x}{A \code{\link[=hi_lo_temp]{hi_lo_temp()}} object}
+
+\item{...}{Additional parameters}
 }
 \description{
 Graphs high and low temperatures from the past several days
