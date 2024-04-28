@@ -7,17 +7,12 @@
 validate_hi_lo_temp(obj)
 }
 \arguments{
-\item{highs}{Numeric vector of high temperatures}
-
-\item{lows}{Numeric vector of low temperatures}
-
-\item{dates}{Numeric vector of high temperatures}
-
-\item{location}{Character vector containing city, state, and zip code}
+\item{obj}{A \code{\link[=hi_lo_temp]{hi_lo_temp()}} object to be validated}
 }
 \value{
 An object of class hi_lo_temp
 }
 \description{
-Validates a class that holds vectors for the high and low temperatures for a series of dates at a particular location
+Validates a class that holds vectors for the high and low temperatures for a series
+of dates at a particular location
 }

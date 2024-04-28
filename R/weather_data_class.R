@@ -1,6 +1,6 @@
 #' @title Weather data class
-#' @description
-#' A class that holds high and low temperature, wind speed, precipitation, and location for given dates
+#' @description A class that holds high and low temperature, wind speed, precipitation, and location
+#'   for given dates
 #' @param df The data frame that holds the data
 #' @return An object of the class weather_data
 #' @examples
@@ -13,8 +13,8 @@ weather_data <- function(df) {
 }
 
 #' @title Constructor for `weather_data` class
-#' @description
-#' Creates a class that holds vectors for the high and low temperatures, precipitation, and wind speeds for a series of dates at a given location
+#' @description Creates a class that holds vectors for the high and low temperatures, precipitation,
+#'   and wind speeds for a series of dates at a given location
 #' @param df The data frame that holds the data
 #' @examples
 #' weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts"))
@@ -33,8 +33,8 @@ new_weather_data <- function(df) {
 }
 
 #' @title Validator for `weather_data` class
-#' @description
-#' Validates a class that holds high and low temperatures, precipitation, and wind speed data for a series of dates at a particular location
+#' @description Validates a class that holds high and low temperatures, precipitation, and wind
+#'   speed data for a series of dates at a particular location
 #' @param obj An object of class weather_data
 #' @return An object of class weather_data
 #' @examples
@@ -54,8 +54,7 @@ validate_weather_data <- function(obj) {
 }
 
 #' @title Create `hi_lo_temp` from `weather_data`
-#' @description
-#' Creates an object of high and low temperatures from weather data
+#' @description Creates an object of high and low temperatures from weather data
 #' @param weather_data An object of class `weather_data`
 #' @return An object of class `hi_lo_temp`
 #' @examples
@@ -70,8 +69,7 @@ to_hi_lo_temp <- function(weather_data) {
 }
 
 #' @title Create `precipitation` from `weather_data`
-#' @description
-#' Creates an object of precipitation amount from past weather data
+#' @description Creates an object of precipitation amount from past weather data
 #' @param weather_data An object of class `weather_data`
 #' @return An object of class `precipitation`
 #' @examples

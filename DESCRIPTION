@@ -12,15 +12,16 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 Imports: 
     ggplot2,
-    graphics,
     lubridate,
     rvest,
-    stringr,
-    utils
+    stringr
 Depends: 
     R (>= 2.10)
 LazyData: true
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+    knitr
 VignetteBuilder: knitr

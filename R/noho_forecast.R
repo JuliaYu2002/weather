@@ -18,8 +18,11 @@
 #' - Wind Direction (character): the direction that the wind is blowing
 #' - Wind Speed (numeric): how fast the wind is blowing
 #'
-#' @source <https://weather.com/weather/tenday/l/8a8df2c2297bffb63bf3fc70a45fd88e10152b88363a57940cb501eb7d2f8094>
+#' @source
+#' <https://weather.com/weather/tenday/l/8a8df2c2297bffb63bf3fc70a45fd88e10152b88363a57940cb501eb7d2f8094>
 #'
+#' @examples
+#' forecast <- weather_noho()
 #' @export
 weather_noho <- function() {
   weather_data <- rvest::read_html("https://weather.com/weather/tenday/l/8a8df2c2297bffb63bf3fc70a45fd88e10152b88363a57940cb501eb7d2f8094")
