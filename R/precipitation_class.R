@@ -44,66 +44,18 @@ validate_precip_data <- function(pre_obj) {
   return(pre_obj)
 }
 
-#' @title Retrieve past precipitation data
-#' @description
-#' Scrapes www.localconditions.com for the past precipitation data
-#' @param city A character vector of the city name
-#' @param state A character vector of the state name
-#' @param zip A character vector of the zip code of the city
-#' @return An object of class precip_class
-#'
-#' @source <https://www.localconditions.com/>
-#'
-#' @examples
-#' past_precipitation(city = "northampton", state = "massachusetts", zip = "01060")
-#'
-#' @export
-
-past_precipitation <- function(city = "new-york", state = "new-york", zip = "10001") {
-  url <- rvest::read_html(paste0("https://www.localconditions.com/weather-", city, "-", state, "/", zip, "/past.php"))
-
-  # Extract date and reformat
-  dates <- url |>
-    rvest::html_elements(".accordion-toggle") |>
-    rvest::html_text()
-  dates <- stringr::str_extract(dates, "\\w+, \\w+ \\d{1,2}(?:st|nd|rd|th)?")
-  dates <- as.Date(dates, format="%A, %B %d")
-  dates <- format(dates, "%Y-%m-%d")
-
-  # Extract Precipitation Data
-  precipitation <- url |>
-    rvest::html_elements(".past_weather_express") |>
-    rvest::html_text() |>
-    stringr::str_extract("Total: [0-9\\.]*") |>
-    substring(7)
-  precipitation <- ifelse(precipitation == " ", "0", precipitation)
-
-  # Create precipitation object
-  pre_obj <- precipitation(as.numeric(precipitation), dates, c(city, state, zip))
-
-  return(pre_obj)
-}
-
 #' @title Plot past precipitation
 #' @description
 #' Graphs past precipitation for the given dates
 #' @param pre_obj An object of class precip_class generated from function past_precipitation
 #'
 #' @examples
-#' pastprecip <- past_precipitation(city = "northampton", state = "massachusetts", zip = "01060")
-#' plot_past_precipitation(pastprecip)
+#' pastprecip <- precipitation(c(0.01, 0, 0.04, 0), seq(Sys.Date()-3, Sys.Date(), by="days"), c("Northampton","Massachusetts"))
+#' plot(pastprecip)
 #'
 #' @exportS3Method
 plot.precipitation <- function(pre_obj) {
   precip_df <- data.frame(Date = as.Date(as.numeric(pre_obj)), Precipitation = attr(pre_obj, "precip"))
-
-  # Convert Date to Date type and Precipitation to numeric
-  # precip_df$Date <- as.Date(precip_df$Date, format="%Y-%m-%d")
-  # precip_df$Precipitation <- as.numeric(precip_df$Precipitation)
-
-  # Complete the sequence of dates and fill missing values with 0
-  # precip_df <- precip_df |>
-  #   tidyr::complete(Date = seq(min(Date), max(Date), by = "day"), fill = list(Precipitation = 0))
 
   ggplot2::ggplot(data = precip_df,
                   ggplot2::aes(x = as.Date(Date),

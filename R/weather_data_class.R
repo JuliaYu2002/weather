@@ -39,7 +39,6 @@ new_weather_data <- function(df) {
 #' @return An object of class weather_data
 #' @examples
 #' validate_weather_data(new_weather_data(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts"))))
-#' @importFrom lubridate is.Date
 validate_weather_data <- function(obj) {
   if (!is.numeric(attr(obj, "highs")) || !is.numeric(attr(obj, "lows"))) {
     stop("Temperature data must be numeric.")

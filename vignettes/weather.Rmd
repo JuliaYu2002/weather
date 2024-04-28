@@ -26,11 +26,7 @@ The weather package provides three ways of obtaining weather data.
 
 ## 1. Obtaining data from the distant past
 
-The weather package comes with a built in dataframe called USweather. You can view this dataframe once the package is loaded.
-
-```{r}
-View(USweather)
-```
+The weather package comes with a built in dataframe called USweather. You can view this dataframe using `View()` once the package is loaded.
 
 The dataframe contains information such as when and where the data was collected, temperature data, wind data, and precipitation data.
 
@@ -46,7 +42,6 @@ Data can also be obtained from the website https://www.localconditions.com/ for 
 
 ```{r}
 noho <- past_days("northampton", "ma", "01060")
-View(noho)
 ```
 
 ## 3 Obtaining forecasted data
@@ -55,7 +50,6 @@ Forecasted data can be obtained from https://weather.com for Northampton, MA usi
 
 ```{r}
 noho_forecast <- weather_noho()
-View(noho_forecast)
 ```
 
 # Creating objects of class weather_data
