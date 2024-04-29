@@ -14,3 +14,6 @@
 \description{
 Graphs high and low temperatures from the past several days
 }
+\examples{
+plot(hi_lo_temp(c(80,70), c(60,65), seq(Sys.Date()-1, Sys.Date(), , by="days"), c("Northampton", "MA")))
+}
