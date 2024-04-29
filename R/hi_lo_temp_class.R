@@ -73,7 +73,7 @@ plot.hi_lo_temp <- function(x, ...) {
     ggplot2::xlab("Date") +
     ggplot2::ylab(paste0("High and Low Temp (Fahrenheit)")) +
     ggplot2::ggtitle(paste0("Weather in ", stringr::str_to_title(attr(x, "city")), ", ", stringr::str_to_title(attr(x, "state")))) +
-    ggplot2::scale_x_date(date_breaks = "1 day", date_labels = "%Y-%m-%d") +
+    ggplot2::scale_x_date(date_breaks = paste(ceiling(length(x)/7), "day"), date_labels = "%Y-%m-%d") +
     ggplot2::theme_minimal() +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90))
 }

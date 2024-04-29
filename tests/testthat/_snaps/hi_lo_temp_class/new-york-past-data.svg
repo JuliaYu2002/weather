@@ -192,7 +192,7 @@
 <text transform='translate(704.91,535.42) rotate(-90)' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='45.02px' lengthAdjust='spacingAndGlyphs'>2017-01-10</text>
 <text transform='translate(718.53,535.42) rotate(-90)' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='45.02px' lengthAdjust='spacingAndGlyphs'>2017-01-18</text>
 <text x='373.66' y='568.24' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='23.24px' lengthAdjust='spacingAndGlyphs'>Date</text>
-<text transform='translate(13.05,265.38) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='119.57px' lengthAdjust='spacingAndGlyphs'>High and Low Temp (ºF)</text>
+<text transform='translate(13.05,265.38) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='161.42px' lengthAdjust='spacingAndGlyphs'>High and Low Temp (Fahrenheit)</text>
 <text x='32.79' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='189.29px' lengthAdjust='spacingAndGlyphs'>Weather in New York, New York</text>
 </g>
 </svg>
