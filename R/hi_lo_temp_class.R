@@ -6,6 +6,8 @@
 #' @param dates Numeric vector of high temperatures
 #' @param location Character vector containing city, state, and zip code
 #' @return An object of class hi_lo_temp
+#' @examples
+#' hi_lo_temp(80, 60, Sys.Date(), c("Northampton", "MA"))
 #' @export
 hi_lo_temp <- function(highs, lows, dates, location) {
   obj <- new_hi_lo_temp(highs, lows, dates, location) |>
@@ -64,6 +66,8 @@ validate_hi_lo_temp <- function(obj) {
 #' @importFrom stringr str_to_title
 #' @param x A [`hi_lo_temp()`] object
 #' @param ... Additional parameters
+#' @examples
+#' plot(hi_lo_temp(c(80,70), c(60,65), seq(Sys.Date()-1, Sys.Date(), , by="days"), c("Northampton", "MA")))
 #' @exportS3Method
 plot.hi_lo_temp <- function(x, ...) {
   df <- data.frame(dates = as.Date(as.numeric(x)), highs = attr(x, "highs"), lows = attr(x, "lows"))

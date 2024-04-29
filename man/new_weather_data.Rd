@@ -16,6 +16,3 @@ An object of class weather_data
 Creates a class that holds vectors for the high and low temperatures, precipitation,
 and wind speeds for a series of dates at a given location
 }
-\examples{
-weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts"))
-}
