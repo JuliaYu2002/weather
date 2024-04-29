@@ -51,7 +51,8 @@ validate_precip_data <- function(pre_obj) {
 #' @param x An object of class precip_class generated from function past_precipitation
 #' @param ... Additional parameters
 #' @examples
-#' pastprecip <- precipitation(c(0.01, 0, 0.04, 0), seq(Sys.Date()-3, Sys.Date(), by="days"), c("Northampton","Massachusetts"))
+#' pastprecip <- precipitation(c(0.01, 0, 0.04, 0),
+#' seq(Sys.Date()-3, Sys.Date(), by="days"), c("Northampton","Massachusetts"))
 #' plot(pastprecip)
 #' @exportS3Method
 plot.precipitation <- function(x, ...) {

@@ -17,5 +17,6 @@ A class that holds high and low temperature, wind speed, precipitation, and loca
 for given dates
 }
 \examples{
-weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts"))
+weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5,
+"Precipitation" = 0, City = "Northampton", State = "Massachusetts"))
 }

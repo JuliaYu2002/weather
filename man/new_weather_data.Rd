@@ -16,3 +16,4 @@ An object of class weather_data
 Creates a class that holds vectors for the high and low temperatures, precipitation,
 and wind speeds for a series of dates at a given location
 }
+

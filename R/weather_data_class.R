@@ -4,7 +4,8 @@
 #' @param df The data frame that holds the data
 #' @return An object of the class weather_data
 #' @examples
-#' weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts"))
+#' weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5,
+#' "Precipitation" = 0, City = "Northampton", State = "Massachusetts"))
 #' @export
 weather_data <- function(df) {
   obj <- new_weather_data(df) |>
@@ -53,7 +54,8 @@ validate_weather_data <- function(obj) {
 #' @param weather_data An object of class `weather_data`
 #' @return An object of class `hi_lo_temp`
 #' @examples
-#' to_hi_lo_temp(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts")))
+#' to_hi_lo_temp(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55,
+#' "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts")))
 #' @export
 to_hi_lo_temp <- function(weather_data) {
   if (length(attr(weather_data, "class")) < 1 || attr(weather_data, "class") != "weather_data") {
@@ -68,7 +70,8 @@ to_hi_lo_temp <- function(weather_data) {
 #' @param weather_data An object of class `weather_data`
 #' @return An object of class `precipitation`
 #' @examples
-#' to_precipitation(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts")))
+#' to_precipitation(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55,
+#' "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts")))
 #' @export
 to_precipitation <- function(weather_data) {
   if (length(attr(weather_data, "class")) < 1 || attr(weather_data, "class") != "weather_data") {
