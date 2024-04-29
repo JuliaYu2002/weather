@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # weather
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/JuliaYu2002/weather/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JuliaYu2002/weather/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The weather package retrieves weather data (highest temperature, lowest temperature, precipitation, windspeed) from websites and data sets, providing users with useful functions for data manipulation and visualization.
