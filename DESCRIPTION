@@ -1,6 +1,6 @@
 Package: weather
 Title: View and Plot Weather Data
-Version: 0.0.0.9000
+Version: 1.0
 Authors@R: c(
     person(given = "Lucia", family = "Qin", email = "lqin@smith.edu", role = c("aut")),
     person(given = "Karenna", family = "Kung", email = "kkung@smith.edu", role = c("aut")),
