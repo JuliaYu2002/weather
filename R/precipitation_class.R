@@ -61,7 +61,7 @@ plot.precipitation <- function(x, ...) {
                   ggplot2::aes(x = as.Date(Date),
                                y = Precipitation)) +
     ggplot2::geom_bar(stat = "identity", fill = "blue", width = 0.5) +
-    ggplot2::scale_x_date(date_breaks = paste(ceiling(length(pre_obj)/7), "day"), date_labels = "%Y-%m-%d") +
+    ggplot2::scale_x_date(date_breaks = paste(ceiling(length(x)/7), "day"), date_labels = "%Y-%m-%d") +
     ggplot2::xlab("Date") +
     ggplot2::ylab("Precipitation (inches)") +
     ggplot2::ggtitle(paste0("Past Precipitation in ",
