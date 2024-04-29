@@ -16,5 +16,6 @@ An object of class \code{hi_lo_temp}
 Creates an object of high and low temperatures from weather data
 }
 \examples{
-to_hi_lo_temp(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts")))
+to_hi_lo_temp(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55,
+"Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts")))
 }

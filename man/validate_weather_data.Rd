@@ -17,5 +17,7 @@ Validates a class that holds high and low temperatures, precipitation, and wind
 speed data for a series of dates at a particular location
 }
 \examples{
-validate_weather_data(new_weather_data(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts"))))
+validate_weather_data(new_weather_data(weather_data(data.frame("Date" = Sys.Date(),
+"High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton",
+State = "Massachusetts"))))
 }

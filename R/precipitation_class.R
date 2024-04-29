@@ -50,7 +50,8 @@ validate_precip_data <- function(pre_obj) {
 #' @param ... Additional parameters
 #'
 #' @examples
-#' pastprecip <- precipitation(c(0.01, 0, 0.04, 0), seq(Sys.Date()-3, Sys.Date(), by="days"), c("Northampton","Massachusetts"))
+#' pastprecip <- precipitation(c(0.01, 0, 0.04, 0),
+#' seq(Sys.Date()-3, Sys.Date(), by="days"), c("Northampton","Massachusetts"))
 #' plot(pastprecip)
 #'
 #' @exportS3Method

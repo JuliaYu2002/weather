@@ -16,5 +16,6 @@ An object of class \code{precipitation}
 Creates an object of precipitation amount from past weather data
 }
 \examples{
-to_precipitation(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts")))
+to_precipitation(weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55,
+"Wind Speed" = 5, "Precipitation" = 0, City = "Northampton", State = "Massachusetts")))
 }
