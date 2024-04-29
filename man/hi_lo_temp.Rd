@@ -22,3 +22,6 @@ An object of class hi_lo_temp
 A class that holds vectors for the high and low temperatures for a series of dates
 at a particular location
 }
+\examples{
+hi_lo_temp(80, 60, Sys.Date(), c("Northampton", "MA"))
+}

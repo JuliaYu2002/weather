@@ -5,6 +5,8 @@
 #' @param dates Numeric vector of dates
 #' @param location Character vector containing city, state, and zip code
 #' @return An object of class precipitation
+#' @examples
+#' precipitation(0.01, Sys.Date(), c("Northampton", "MA"))
 #' @export
 precipitation <- function(precipitation, dates, location) {
   pre_obj <- new_precip_data(precipitation, dates, location) |>
@@ -48,12 +50,10 @@ validate_precip_data <- function(pre_obj) {
 #' @description Graphs past precipitation for the given dates
 #' @param x An object of class precip_class generated from function past_precipitation
 #' @param ... Additional parameters
-#'
 #' @examples
 #' pastprecip <- precipitation(c(0.01, 0, 0.04, 0),
 #' seq(Sys.Date()-3, Sys.Date(), by="days"), c("Northampton","Massachusetts"))
 #' plot(pastprecip)
-#'
 #' @exportS3Method
 plot.precipitation <- function(x, ...) {
   precip_df <- data.frame(Date = as.Date(as.numeric(x)), Precipitation = attr(x, "precip"))

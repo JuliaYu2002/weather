@@ -20,3 +20,6 @@ An object of class precipitation
 A class that contains vectors for the precipitation for a series of dates at a
 particular location
 }
+\examples{
+precipitation(0.01, Sys.Date(), c("Northampton", "MA"))
+}

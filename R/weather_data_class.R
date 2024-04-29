@@ -17,9 +17,6 @@ weather_data <- function(df) {
 #' @description Creates a class that holds vectors for the high and low temperatures, precipitation,
 #'   and wind speeds for a series of dates at a given location
 #' @param df The data frame that holds the data
-#' @examples
-#' weather_data(data.frame("Date" = Sys.Date(), "High" = 70, "Low" = 55, "Wind Speed" = 5,
-#' "Precipitation" = 0, City = "Northampton", State = "Massachusetts"))
 #' @return An object of class weather_data
 new_weather_data <- function(df) {
   structure(
@@ -39,10 +36,6 @@ new_weather_data <- function(df) {
 #'   speed data for a series of dates at a particular location
 #' @param obj An object of class weather_data
 #' @return An object of class weather_data
-#' @examples
-#' validate_weather_data(new_weather_data(weather_data(data.frame("Date" = Sys.Date(),
-#' "High" = 70, "Low" = 55, "Wind Speed" = 5, "Precipitation" = 0, City = "Northampton",
-#' State = "Massachusetts"))))
 validate_weather_data <- function(obj) {
   if (!is.numeric(attr(obj, "highs")) || !is.numeric(attr(obj, "lows"))) {
     stop("Temperature data must be numeric.")

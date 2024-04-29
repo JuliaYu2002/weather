@@ -18,5 +18,4 @@ Graphs past precipitation for the given dates
 pastprecip <- precipitation(c(0.01, 0, 0.04, 0),
 seq(Sys.Date()-3, Sys.Date(), by="days"), c("Northampton","Massachusetts"))
 plot(pastprecip)
-
 }
