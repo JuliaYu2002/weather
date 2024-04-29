@@ -1,0 +1,57 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# weather
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The weather package retrieves weather data (highest temperature, lowest temperature, precipitation, windspeed) from websites and data sets, providing users with useful functions for data manipulation and visualization.
+
+## Installation
+
+You can install the development version of weather from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("JuliaYu2002/weather")
+```
+
+## Usage
+
+At any date, you can get weather data of Northampton, MA for the next 14 days from weather.com.
+
+This package also has function that retrieves the highest and lowest temperature or the precipitation data for the past 30 days at a specific location.
+
+```{r example}
+library(weather)
+
+noho_forecast <- weather_noho()
+print(noho_forecast)
+
+noho_past <- past_days(city = "northampton", 
+                       state ="massachusetts", 
+                       zip = "01060")
+print(noho_past)
+```
+
+You can also plot the precipitation or the high/low temperatures using functions from this package:
+
+```{r weather}
+hi_lo_past <-  to_hi_lo_temp(weather_data(noho_past))
+
+plot(hi_lo_past)
+```
+
