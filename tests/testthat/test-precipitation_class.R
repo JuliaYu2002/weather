@@ -12,9 +12,17 @@ test_that("precipitation should not be greater than 100 inches", {
   expect_warning(precipitation(nyc$Precipitation + 100, as.Date(nyc$Date, format = "%Y/%m/%d"), c("New York", "NY")), "It seems highly unlikely that there was more than 100 inches of precipitation in one day.")
 })
 
-test_that("precipitation plots work", {
+test_that("precipitation plot works for past data set", {
   vdiffr::expect_doppelganger(
     title = "New York past data",
     fig = plot(to_precipitation(weather_data(nyc)))
   )
 })
+
+test_that("precipitation plot works for past data webscrapping", {
+  vdiffr::expect_doppelganger(
+    title = "Past Precipitation in Northampton, Ma",
+    fig = plot(to_precipitation(weather_data(past_days("northampton", "ma", "01060"))))
+  )
+})
+
